@@ -156,7 +156,7 @@ const states = [
 
 function App() {
    const handleClick = (e) => {
-      e.target.childNodes[1].childNodes.forEach((node, index) => {
+      e.target.nextSibling.childNodes.forEach((node, index) => {
          if (node.classList.contains('city')) {
             if (!node.id) {
                node.id = `city${index + 1}`;
@@ -168,7 +168,7 @@ function App() {
          }
       });
 
-      e.target.childNodes[1].classList.toggle('visible');
+      e.target.nextSibling.classList.toggle('visible');
    };
 
    const handleClick1 = (e) => {};
@@ -178,15 +178,15 @@ function App() {
          <ul>
             {states.map((state, index) => (
                <li key={'state' + index} id={'state' + (index + 1)} onClick={handleClick}>
-                  {state.name}
+                  <span>{state.name}</span>
                   <ul>
                      {state.cities.map((city, index) => (
                         <li className="city" key={'city' + index} onClick={handleClick1}>
-                           {city.name}
+                           <span>{city.name}</span>
                            <ul>
                               {city.towns.map((town, index) => (
                                  <li className="town" key={'town' + index}>
-                                    {town.name}
+                                    <span>{town.name}</span>
                                  </li>
                               ))}
                            </ul>
