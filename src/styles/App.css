@@ -16,8 +16,12 @@ button {
 
 ul {
    margin-bottom: 10px;
-   display: none;
    list-style-type: none;
+   display: none;
+}
+
+li {
+   margin-bottom: 10px;
 }
 
 #main > ul {

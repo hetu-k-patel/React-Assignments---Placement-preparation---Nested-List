@@ -156,36 +156,32 @@ const states = [
 
 function App() {
    const handleClick = (e) => {
-      e.target.childNodes.forEach((c) => {
-         if (c.nodeName == 'UL') c.classList.toggle('visible');
-      });
+      if (e.target.children[0]) e.target.children[0].classList.toggle('visible');
    };
-
-   const handleClick1 = (e) => {};
 
    return (
       <div id="main">
-         {states.map((state, index) => (
-            <ul key={'state' + index} onClick={handleClick} id={'state' + (index + 1)}>
-               {state.name}
-               {state.cities.map((city, index) => (
-                  <ul
-                     key={'city' + index}
-                     onClick={handleClick1}
-                     id={'city' + (index + 1)}
-                  >
-                     {city.name}
-                     <ul>
-                        {city.towns.map((town, index) => (
-                           <li key={'town' + index} id={'town' + (index + 1)}>
-                              {town.name}
-                           </li>
-                        ))}
-                     </ul>
+         <ul>
+            {states.map((state, index) => (
+               <li key={'state' + index} id={'state' + (index + 1)} onClick={handleClick}>
+                  {state.name}
+                  <ul>
+                     {state.cities.map((city, index) => (
+                        <li key={'city' + index} id={'city' + (index + 1)}>
+                           {city.name}
+                           <ul>
+                              {city.towns.map((town, index) => (
+                                 <li key={'town' + index} id={'town' + (index + 1)}>
+                                    {town.name}
+                                 </li>
+                              ))}
+                           </ul>
+                        </li>
+                     ))}
                   </ul>
-               ))}
-            </ul>
-         ))}
+               </li>
+            ))}
+         </ul>
       </div>
    );
 }
