@@ -24,8 +24,13 @@ li {
    margin-bottom: 10px;
 }
 
-#main > ul {
+#main > ul,
+#main > ul > li {
    display: block;
+}
+
+li {
+   display: none;
 }
 
 .visible {

@@ -157,32 +157,38 @@ const states = [
 function App() {
    const handleClick = (e) => {
       e.target.nextSibling.classList.toggle('visible');
+      e.target.nextSibling.childNodes.forEach((node, index) => {
+         if (node.classList.contains('city')) {
+            if (!node.childNodes[0].id) {
+               node.childNodes[0].id = `city${index + 1}`;
+            } else node.childNodes[0].removeAttribute('id');
+         } else if (node.classList.contains('town')) {
+            if (!node.childNodes[0].id) {
+               console.log('jkj');
+               node.childNodes[0].id = `town${index + 1}`;
+            } else node.childNodes[0].removeAttribute('id');
+         }
+
+         return node.classList.toggle('visible');
+      });
    };
 
    return (
       <div id="main">
          <ul>
-            {states.map((state, stateIndex) => (
-               <li key={'state' + stateIndex}>
-                  <span id={'state' + (stateIndex + 1)} onClick={handleClick}>
+            {states.map((state, index) => (
+               <li key={'state' + index}>
+                  <span id={'state' + (index + 1)} onClick={handleClick}>
                      {state.name}
                   </span>
                   <ul>
-                     {state.cities.map((city, cityIndex) => (
-                        <li key={'city' + (stateIndex + cityIndex)}>
-                           <span
-                              id={'city' + (stateIndex + cityIndex + 2)}
-                              onClick={handleClick}
-                           >
-                              {city.name}
-                           </span>
+                     {state.cities.map((city, index) => (
+                        <li className="city" key={'city' + index}>
+                           <span onClick={handleClick}>{city.name}</span>
                            <ul>
-                              {city.towns.map((town, townIndex) => (
-                                 <li
-                                    key={'town' + (stateIndex + cityIndex + townIndex)}
-                                    id={'town' + (stateIndex + cityIndex + townIndex + 3)}
-                                 >
-                                    {town.name}
+                              {city.towns.map((town, index) => (
+                                 <li className="town" key={'town' + index}>
+                                    <span>{town.name}</span>
                                  </li>
                               ))}
                            </ul>
