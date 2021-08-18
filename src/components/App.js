@@ -156,8 +156,6 @@ const states = [
 
 function App() {
    const handleClick = (e) => {
-      e.target.childNodes[1].classList.toggle('visible');
-
       e.target.childNodes[1].childNodes.forEach((node, index) => {
          if (node.classList.contains('city')) {
             if (!node.id) {
@@ -169,6 +167,8 @@ function App() {
             } else node.removeAttribute('id');
          }
       });
+
+      e.target.childNodes[1].classList.toggle('visible');
    };
 
    const handleClick1 = (e) => {};
