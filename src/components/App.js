@@ -156,39 +156,37 @@ const states = [
 
 function App() {
    const handleClick = (e) => {
-      e.target.nextSibling.classList.toggle('visible');
-      e.target.nextSibling.childNodes.forEach((node, index) => {
-         if (node.classList.contains('city')) {
-            if (!node.childNodes[0].id) {
-               node.childNodes[0].id = `city${index + 1}`;
-            } else node.childNodes[0].removeAttribute('id');
-         } else if (node.classList.contains('town')) {
-            if (!node.childNodes[0].id) {
-               console.log('jkj');
-               node.childNodes[0].id = `town${index + 1}`;
-            } else node.childNodes[0].removeAttribute('id');
-         }
+      e.target.childNodes[1].classList.toggle('visible');
 
-         return node.classList.toggle('visible');
+      e.target.childNodes[1].childNodes.forEach((node, index) => {
+         if (node.classList.contains('city')) {
+            if (!node.id) {
+               node.id = `city${index + 1}`;
+            } else node.removeAttribute('id');
+         } else if (node.classList.contains('town')) {
+            if (!node.id) {
+               node.id = `town${index + 1}`;
+            } else node.removeAttribute('id');
+         }
       });
    };
+
+   const handleClick1 = (e) => {};
 
    return (
       <div id="main">
          <ul>
             {states.map((state, index) => (
-               <li key={'state' + index}>
-                  <span id={'state' + (index + 1)} onClick={handleClick}>
-                     {state.name}
-                  </span>
+               <li key={'state' + index} id={'state' + (index + 1)} onClick={handleClick}>
+                  {state.name}
                   <ul>
                      {state.cities.map((city, index) => (
-                        <li className="city" key={'city' + index}>
-                           <span onClick={handleClick}>{city.name}</span>
+                        <li className="city" key={'city' + index} onClick={handleClick1}>
+                           {city.name}
                            <ul>
                               {city.towns.map((town, index) => (
                                  <li className="town" key={'town' + index}>
-                                    <span>{town.name}</span>
+                                    {town.name}
                                  </li>
                               ))}
                            </ul>

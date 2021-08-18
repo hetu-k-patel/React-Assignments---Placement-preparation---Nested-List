@@ -29,10 +29,6 @@ li {
    display: block;
 }
 
-li {
-   display: none;
-}
-
 .visible {
    display: list-item;
 }
