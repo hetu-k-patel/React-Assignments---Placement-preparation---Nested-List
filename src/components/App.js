@@ -162,20 +162,26 @@ function App() {
    return (
       <div id="main">
          <ul>
-            {states.map((state, index) => (
-               <li key={'state' + index}>
-                  <span id={'state' + (index + 1)} onClick={handleClick}>
+            {states.map((state, stateIndex) => (
+               <li key={'state' + stateIndex}>
+                  <span id={'state' + (stateIndex + 1)} onClick={handleClick}>
                      {state.name}
                   </span>
                   <ul>
-                     {state.cities.map((city, index) => (
-                        <li key={'city' + index}>
-                           <span id={'city' + (index + 1)} onClick={handleClick}>
+                     {state.cities.map((city, cityIndex) => (
+                        <li key={'city' + (stateIndex + cityIndex)}>
+                           <span
+                              id={'city' + (stateIndex + cityIndex + 2)}
+                              onClick={handleClick}
+                           >
                               {city.name}
                            </span>
                            <ul>
-                              {city.towns.map((town, index) => (
-                                 <li key={'town' + index} id={'town' + (index + 1)}>
+                              {city.towns.map((town, townIndex) => (
+                                 <li
+                                    key={'town' + (stateIndex + cityIndex + townIndex)}
+                                    id={'town' + (stateIndex + cityIndex + townIndex + 3)}
+                                 >
                                     {town.name}
                                  </li>
                               ))}
