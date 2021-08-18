@@ -17,6 +17,7 @@ button {
 ul {
    margin-bottom: 10px;
    display: none;
+   list-style-type: none;
 }
 
 #main > ul {
@@ -24,5 +25,5 @@ ul {
 }
 
 .visible {
-   display: block;
+   display: list-item;
 }
