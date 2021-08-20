@@ -156,7 +156,14 @@ const states = [
 
 function App() {
    const handleClick = (e) => {
-      e.target.nextSibling.childNodes.forEach((node, index) => {
+      document.querySelectorAll('li').forEach((el) => {
+         const id = el.id;
+         if (id && !id.includes('state')) {
+            el.removeAttribute('id');
+         }
+      });
+
+      e.target.children[0].childNodes.forEach((node, index) => {
          if (node.classList.contains('city')) {
             if (!node.id) {
                node.id = `city${index + 1}`;
@@ -168,7 +175,7 @@ function App() {
          }
       });
 
-      e.target.nextSibling.classList.toggle('visible');
+      e.target.children[0].classList.toggle('visible');
    };
 
    const handleClick1 = (e) => {};
@@ -178,15 +185,15 @@ function App() {
          <ul>
             {states.map((state, index) => (
                <li key={'state' + index} id={'state' + (index + 1)} onClick={handleClick}>
-                  <span>{state.name}</span>
+                  {state.name}
                   <ul>
                      {state.cities.map((city, index) => (
                         <li className="city" key={'city' + index} onClick={handleClick1}>
-                           <span>{city.name}</span>
+                           {city.name}
                            <ul>
                               {city.towns.map((town, index) => (
                                  <li className="town" key={'town' + index}>
-                                    <span>{town.name}</span>
+                                    {town.name}
                                  </li>
                               ))}
                            </ul>
